@@ -38,17 +38,19 @@ public class CCadenas {
     public static final String PR_PASO = "paso";
     public static final String PR_FIN_PARA = "finpara";
 
-    public static final String OR_MAYOR_QUE = "[>]";
-    public static final String OR_MENOR_QUE = "[<]";
-    public static final String OR_IGUAL_QUE = "[==]";
-    public static final String OR_MENOR_O_IGUAL_QUE = "[<=]";
-    public static final String OR_MAYOR_O_IGUAL_QUE = "[>=]";
+    public static final String OR_MAYOR_QUE = ">";
+    public static final String OR_MENOR_QUE = "<";
+    public static final String OR_IGUAL_QUE = "==";
+    public static final String OR_MENOR_O_IGUAL_QUE = "<=";
+    public static final String OR_MAYOR_O_IGUAL_QUE = ">=";
+    public static final String OR_DIFERENTE_DE = "!=";
     public static final String OR_TODOS = "(" + OR_IGUAL_QUE + "|" + OR_MAYOR_O_IGUAL_QUE + 
-        "|" + OR_MAYOR_QUE + "|" + OR_MENOR_O_IGUAL_QUE  + "|" + OR_MENOR_QUE + ")";
+        "|" + OR_MAYOR_QUE + "|" + OR_MENOR_O_IGUAL_QUE  + "|" + OR_MENOR_QUE + "|" + OR_DIFERENTE_DE + ")";
     
     public static final String OL_Y = "y";
     public static final String OL_O = "o";
     public static final String OL_NO = "no";
+    public static final String OL_TODOS = "([" + OL_Y + "]|[" + OL_O + "])";
     
     public static final String OA_SUMA = "[+]";
     public static final String OA_RESTA = "[-]";
@@ -71,10 +73,73 @@ public class CCadenas {
     public static final String ASIGNACION = ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO +
         "(" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_CADENA + "|" + VALOR_ENTERO + ")";
     
-    public static final String EXPRESION_ALGEBRAICA_SIMPLE = "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+    public static final String EXPRESION_ALGEBRAICA_SIMPLE = (
+        "((([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
         "|" + VALOR_CADENA + ")(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO +  "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
-        "|" + VALOR_CADENA + "))*";
-    public static final String EXPRESIONES_ALGEBRAICAS = "((" + EXPRESION_ALGEBRAICA_SIMPLE + ")|\\(" + EXPRESION_ALGEBRAICA_SIMPLE+ "\\))" +
-            "(" + VALOR_ESPACIO + "((" + EXPRESION_ALGEBRAICA_SIMPLE + ")|\\(" + EXPRESION_ALGEBRAICA_SIMPLE + "\\)))*";
+        "|" + VALOR_CADENA + "))*)|" + 
+        "(\\(([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+        "|" + VALOR_CADENA + ")(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO +  "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+        "|" + VALOR_CADENA + "))*\\)))"
+    );
     
+    public static final String EXPRESIONES_ALGEBRAICAS = (
+        "((" + EXPRESION_ALGEBRAICA_SIMPLE + ")" +
+        "(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO + "(" + EXPRESION_ALGEBRAICA_SIMPLE + "))*" +
+        "|\\(((" + EXPRESION_ALGEBRAICA_SIMPLE + "))" +
+        "(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO + "(" + EXPRESION_ALGEBRAICA_SIMPLE + "))*\\))"
+    );
+    
+    public static final String EXPRESION_COMPARACION = (
+        "(" + EXPRESIONES_ALGEBRAICAS + "(" + VALOR_ESPACIO + OR_TODOS + VALOR_ESPACIO + EXPRESIONES_ALGEBRAICAS + ")*" +
+        "|(\\" + EXPRESIONES_ALGEBRAICAS + "(" + VALOR_ESPACIO + OR_TODOS + VALOR_ESPACIO + EXPRESIONES_ALGEBRAICAS + ")*\\))"
+    );
+    
+    public static final String EXPRESION_LOGICA = (
+        "(" + EXPRESION_COMPARACION + "(" + VALOR_ESPACIO + OL_TODOS + VALOR_ESPACIO + "(" + EXPRESION_COMPARACION + "))*" +
+        "|"+
+        "(\\(" + EXPRESION_COMPARACION + "(" + VALOR_ESPACIO + OL_TODOS + VALOR_ESPACIO + "(" + EXPRESION_COMPARACION + "))*\\)))"
+    );
+    
+    public static final String EXPRESION_ASIGNACION = (
+        VALOR_ESPACIO + ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO + EXPRESIONES_ALGEBRAICAS  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_ABRE_SI = (
+        "(" + VALOR_ESPACIO + ")*" + PR_SI + VALOR_ESPACIO + EXPRESION_LOGICA  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_CIERRE_SI = (
+        "(" + VALOR_ESPACIO + ")*" + PR_FIN_SI  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_ABRE_SINO = (
+        "(" + VALOR_ESPACIO + ")*" + PR_SINO  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_ABRE_HACER_MIENTRAS = (
+        "(" + VALOR_ESPACIO + ")*" + PR_HACER + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_CIERRA_HACER_MIENTRAS = (
+        "(" + VALOR_ESPACIO + ")*" + PR_MIENTRAS_QUE + VALOR_ESPACIO + EXPRESION_LOGICA  + "(" + VALOR_ESPACIO + ")*"        
+    );
+    
+    public static final String EXPRESION_ABRE_MIENTRAS = (
+        "(" + VALOR_ESPACIO + ")*" + PR_MIENTRAS + VALOR_ESPACIO + EXPRESION_LOGICA  + "(" + VALOR_ESPACIO + ")*"  
+    );
+    
+    public static final String EXPRESION_CIERRA_MIENTRAS = (
+        "(" + VALOR_ESPACIO + ")*" + PR_FIN_MIENTRAS  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_ABRE_PARA = (
+        "((" + VALOR_ESPACIO + ")*" + PR_PARA + VALOR_ESPACIO + EXPRESION_ASIGNACION + VALOR_ESPACIO +
+        PR_HASTA + VALOR_ESPACIO + EXPRESION_ALGEBRAICA_SIMPLE + VALOR_ESPACIO + PR_PASO + VALOR_ESPACIO + VALOR_ENTERO + "(" + VALOR_ESPACIO + ")*)" 
+    );
+    
+    public static final String EXPRESION_CIERRE_PARA = (
+        "(" + VALOR_ESPACIO + ")*" + PR_FIN_PARA  + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+
 }
