@@ -38,14 +38,18 @@ public class CCadenas {
     public static final String PR_PASO = "paso";
     public static final String PR_FIN_PARA = "finpara";
 
-    public static final String OR_MAYOR_QUE = ">";
-    public static final String OR_MENOR_QUE = "<";
-    public static final String OR_IGUAL_QUE = "==";
-    public static final String OR_MENOR_O_IGUAL_QUE = "<=";
-    public static final String OR_MAYOR_O_IGUAL_QUE = ">=";
+    public static final String OR_MAYOR_QUE = "[>]";
+    public static final String OR_MENOR_QUE = "[<]";
+    public static final String OR_IGUAL_QUE = "[==]";
+    public static final String OR_MENOR_O_IGUAL_QUE = "[<=]";
+    public static final String OR_MAYOR_O_IGUAL_QUE = "[>=]";
+    public static final String OR_TODOS = "(" + OR_IGUAL_QUE + "|" + OR_MAYOR_O_IGUAL_QUE + 
+        "|" + OR_MAYOR_QUE + "|" + OR_MENOR_O_IGUAL_QUE  + "|" + OR_MENOR_QUE + ")";
+    
     public static final String OL_Y = "y";
     public static final String OL_O = "o";
     public static final String OL_NO = "no";
+    
     public static final String OA_SUMA = "[+]";
     public static final String OA_RESTA = "[-]";
     public static final String OA_PRODUCTO = "[*]";
@@ -53,10 +57,11 @@ public class CCadenas {
     public static final String OA_MODULO = "[%]";
     public static final String OA_TODOS = "(" + OA_SUMA + "|" + OA_RESTA + "|" + OA_DIVISION + "|" + OA_MODULO + "|" + OA_PRODUCTO + ")";
     public static final String O_ASIGNACION = "[=]";
+    
     //VALOR_BOOLEANO = ("verdadero"|"falso")
-    public static final String ID_VAR = "([A-Za-z0-9_])([\\w])*";
-    public static final String VALOR_ENTERO = "([-]?([0-9])+)";
-    public static final String VALOR_REAL = "((" + VALOR_ENTERO + ")+[.](([0-9])+)";
+    public static final String ID_VAR = "(([A-Za-z0-9_])[\\w]*)";
+    public static final String VALOR_ENTERO = "([-]?([0-9])+)|\\(([-]?([0-9])+)\\)";
+    public static final String VALOR_REAL = "(" + VALOR_ENTERO + ")+[.](([0-9])+)|\\((" + VALOR_ENTERO + ")+[.](([0-9])+)\\)";
     //VALOR_BOOLEANO = [verdadero]|[falso]
     public static final String VALOR_CADENA = "([\"](([A-Za-z0-9])([\\w])*|[\\W])*[\"])";
 
@@ -66,9 +71,10 @@ public class CCadenas {
     public static final String ASIGNACION = ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO +
         "(" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_CADENA + "|" + VALOR_ENTERO + ")";
     
-    public static final String EXPRESION_ALGEBRAICA_SIMPLE = "(" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
-        "|" + VALOR_CADENA + ")" + OA_TODOS + "(" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
-        "|" + VALOR_CADENA + ")";
-    //public static final String EXPRESIONES_ALGEBRAICAS = EXPRESION_ALGEBRAICA_SIMPLE + ;
+    public static final String EXPRESION_ALGEBRAICA_SIMPLE = "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+        "|" + VALOR_CADENA + ")(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO +  "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+        "|" + VALOR_CADENA + "))*";
+    public static final String EXPRESIONES_ALGEBRAICAS = "((" + EXPRESION_ALGEBRAICA_SIMPLE + ")|\\(" + EXPRESION_ALGEBRAICA_SIMPLE+ "\\))" +
+            "(" + VALOR_ESPACIO + "((" + EXPRESION_ALGEBRAICA_SIMPLE + ")|\\(" + EXPRESION_ALGEBRAICA_SIMPLE + "\\)))*";
     
 }

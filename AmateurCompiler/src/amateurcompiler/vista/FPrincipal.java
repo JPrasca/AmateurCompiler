@@ -200,7 +200,7 @@ public class FPrincipal extends javax.swing.JFrame {
         jTextAreaLog.setText("");
         try {
             pasoDeTexto();
-            reader = new BufferedReader(new FileReader(amateurcompiler.CClient.path));
+            reader = new BufferedReader(new FileReader(amateurcompiler.CCliente.path));
             CLexico lexer = new CLexico(reader);
             
             CToken t = lexer.nextToken();
@@ -238,7 +238,7 @@ public class FPrincipal extends javax.swing.JFrame {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine())
             path = path + "amateurcompiler/temp/out.txt";
-            amateurcompiler.CClient.path = path;
+            amateurcompiler.CCliente.path = path;
 //            JOptionPane.showMessageDialog(null, path);
             try (
                     //fichero = new FileWriter(ruta);
