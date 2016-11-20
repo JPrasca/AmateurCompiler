@@ -101,7 +101,7 @@ public class CCadenas {
     );
     
     public static final String EXPRESION_ASIGNACION = (
-        VALOR_ESPACIO + ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO + EXPRESIONES_ALGEBRAICAS  + "(" + VALOR_ESPACIO + ")*"
+        "(" + VALOR_ESPACIO + ")*" + ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO + EXPRESIONES_ALGEBRAICAS  + "(" + VALOR_ESPACIO + ")*"
     );
     
     public static final String EXPRESION_ABRE_SI = (
@@ -141,5 +141,7 @@ public class CCadenas {
         "(" + VALOR_ESPACIO + ")*" + PR_FIN_PARA  + "(" + VALOR_ESPACIO + ")*"
     );
     
-
+    public static final String EXPRESION_ABRE_SEGUN = (
+        "(" + VALOR_ESPACIO + ")*" + PR_SEGUN + "(" + VALOR_ESPACIO + ")*" + ID_VAR + "(" + VALOR_ESPACIO + ")*"
+    );
 }
