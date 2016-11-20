@@ -15,7 +15,7 @@ import java.util.ArrayList;
 %public //Cambiamos el nombre de la clase del analizador
 
 
-%class CLexer //Agregamos soporte a unicode
+%class CScaneador //Agregamos soporte a unicode
 
 %unicode
 //Codigo java
@@ -58,18 +58,6 @@ import java.util.ArrayList;
 
 //Expresiones regulares
 //Declaraciones
-//EXP_ALPHA=[A-Za-z]
-//EXP_DIGITO=[0-9]
-//EXP_ALPHANUMERIC=({EXP_ALPHA}|{EXP_DIGITO})*
-//CADENA_DE_CARACTERES=["]({EXP_ALPHA}|{EXP_DIGITO})*["]
-//NUMERO_ENTERO=[-]?({EXP_DIGITO})+
-//NUMERO_REAL=[-]?({EXP_DIGITO})[.]({EXP_DIGITO})+ 
-//IDENTIFICADOR={EXP_ALPHA}({EXP_ALPHANUMERIC})*
-//ESPACIO=[ \t]
-//SALTO=\n|\r|\r\n
-//CUALQUIER_ESPACIO = {SALTO}|{ESPACIO}|[\f]
-//TAB=\t
-//EXPRESION_AR=NUMERO_ENTERO({ESPACIO})*[+|-|/|*]NUMERO_ENTERO
 
 PR_PROGRAMA = "programa"
 PR_VARIABLE = "variable"
@@ -85,7 +73,7 @@ PR_SI = "si"
 PR_SINO = "sino"
 PR_FIN_SI = "finsi"
 PR_SEGUN = "segun"
-PR_DE_OTRO_MODO = "de otro modo"
+PR_DE_OTRO_MODO = "deotromodo"
 PR_FIN_SEGUN = "finsegun"
 PR_MIENTRAS = "mientras"
 PR_FIN_MIENTRAS = "finmientras"
@@ -110,7 +98,14 @@ OA_PRODUCTO = "*"
 OA_DIVISION = "/"
 OA_MODULO = "%"
 O_ASIGNACION = "="
-//VALOR_BOOLEANO = ("verdadero"|"falso")
+O_DOS_PUNTOS = ":"
+O_PAREN_ABRE = "("
+O_PAREN_CIERRA = ")"
+O_CORCHETE_ABRE = "["
+O_CORCHETE_CIERRA = "]"
+O_COMA = ","
+
+VALOR_BOOLEANO = ("verdadero"|"falso")
 ID_VAR = ([A-Za-z0-9])([\w])*
 VALOR_ENTERO = [-]?([0-9])+
 VALOR_REAL = [-]?({VALOR_ENTERO})+[.]({VALOR_ENTERO})+
@@ -393,6 +388,48 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+{O_DOS_PUNTOS} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_DOS_PUNTOS",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{O_PAREN_ABRE} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_PAREN_ABRE",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{O_PAREN_CIERRA} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_PAREN_CIERRA",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{O_CORCHETE_ABRE} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_CORCHETE_ABRE",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{O_CORCHETE_CIERRA} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_CORCHETE_CIERRA",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{O_COMA} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"O_COMA",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
 {ID_VAR} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"ID_VAR",yyline,yycolumn);
@@ -414,12 +451,12 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
-/*{VALOR_BOOLEANO} {
+{VALOR_BOOLEANO} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"VALOR_BOOLEANO",yyline,yycolumn);
     tokens.add(t);
     return t;
-}*/
+}
 
 {VALOR_CADENA} {
 	contador++;

@@ -25,11 +25,11 @@ public class CCliente {
 //        System.out.println("cad  =  \"valor\"".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
 //        System.out.println("c = valor".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
 //        System.out.println("cad = 1".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
-        System.out.println("para n = 0 hasta n paso 1".matches(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_ABRE_PARA));
-        System.out.println(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_ABRE_PARA);
+        System.out.println("entero vad,a , s2".matches(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION));
+        System.out.println(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new FPrincipal().setVisible(true);
+                new FPrincipal().setVisible(true);
             }
         });
         

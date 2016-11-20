@@ -27,7 +27,7 @@ public class CCadenas {
     public static final String PR_SINO = "sino";
     public static final String PR_FIN_SI = "finsi";
     public static final String PR_SEGUN = "segun";
-    public static final String PR_DE_OTRO_MODO = "de otro modo";
+    public static final String PR_DE_OTRO_MODO = "deotromodo";
     public static final String PR_FIN_SEGUN = "finsegun";
     public static final String PR_MIENTRAS = "mientras";
     public static final String PR_FIN_MIENTRAS = "finmientras";
@@ -59,6 +59,12 @@ public class CCadenas {
     public static final String OA_MODULO = "[%]";
     public static final String OA_TODOS = "(" + OA_SUMA + "|" + OA_RESTA + "|" + OA_DIVISION + "|" + OA_MODULO + "|" + OA_PRODUCTO + ")";
     public static final String O_ASIGNACION = "[=]";
+    public static final String O_DOS_PUNTOS = ":";
+    public static final String O_PAREN_ABRE = "\\(";
+    public static final String O_PAREN_CIERRA = "\\)";
+    public static final String O_CORCHETE_ABRE = "\\[";
+    public static final String O_CORCHETE_CIERRA = "\\]";
+    public static final String O_COMA = ",";
     
     //VALOR_BOOLEANO = ("verdadero"|"falso")
     public static final String ID_VAR = "(([A-Za-z0-9_])[\\w]*)";
@@ -72,6 +78,16 @@ public class CCadenas {
     
     public static final String ASIGNACION = ID_VAR + VALOR_ESPACIO + O_ASIGNACION + VALOR_ESPACIO +
         "(" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_CADENA + "|" + VALOR_ENTERO + ")";
+    
+    public static final String EXPRESION_ABRE_DECLARIONES = "((" + VALOR_ESPACIO + ")*" + PR_VARIABLE + "(" + VALOR_ESPACIO + ")*)";
+    public static final String EXPRESION_ABRE_PROGRAMA = "((" + VALOR_ESPACIO + ")*" + PR_PROGRAMA + "(" + VALOR_ESPACIO + ")*)";
+    public static final String EXPRESION_INICIO = "((" + VALOR_ESPACIO + ")*" + PR_INICIO + "(" + VALOR_ESPACIO + ")*)";
+    public static final String EXPRESION_FIN = "((" + VALOR_ESPACIO + ")*" + PR_FIN+ "(" + VALOR_ESPACIO + ")*)";
+    
+    public static final String EXPRESION_DECLARACION = (
+        "((" + PR_BOOLEANO + "|" + PR_CADENA + "|" + PR_ENTERO + "|" + PR_REAL + ")" + VALOR_ESPACIO + ID_VAR +
+        "(" + "(" + VALOR_ESPACIO + ")*" + O_COMA + "(" + VALOR_ESPACIO + ")*" + ID_VAR + ")*)" + "(" + VALOR_ESPACIO + ")*"
+    );
     
     public static final String EXPRESION_ALGEBRAICA_SIMPLE = (
         "((([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
@@ -144,4 +160,19 @@ public class CCadenas {
     public static final String EXPRESION_ABRE_SEGUN = (
         "(" + VALOR_ESPACIO + ")*" + PR_SEGUN + "(" + VALOR_ESPACIO + ")*" + ID_VAR + "(" + VALOR_ESPACIO + ")*"
     );
+    
+    public static final String EXPRESION_ABRE_OPCION = (
+        "(" + VALOR_ESPACIO + ")*" + "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO +
+        "|" + VALOR_CADENA + ")" + VALOR_ESPACIO + O_DOS_PUNTOS + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    public static final String EXPRESION_ABRE_SEGUN_DE_OTRO_MODO = (
+        "(" + VALOR_ESPACIO + ")*" + PR_DE_OTRO_MODO + VALOR_ESPACIO + O_DOS_PUNTOS + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+     public static final String EXPRESION_CIERRE_SEGUN = (
+        "(" + VALOR_ESPACIO + ")*" + PR_FIN_SEGUN + "(" + VALOR_ESPACIO + ")*"
+    );
+    
+    
 }

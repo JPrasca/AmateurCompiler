@@ -201,9 +201,9 @@ public class FPrincipal extends javax.swing.JFrame {
         try {
             pasoDeTexto();
             reader = new BufferedReader(new FileReader(amateurcompiler.CCliente.path));
-            CLexico lexer = new CLexico(reader);
-            
+            CScaneador lexer = new CScaneador(reader);
             CToken t = lexer.nextToken();
+            
             while (t != null) {
 
                 //jTextAreaLog.setText(jTextAreaLog.getText() + t.toString());

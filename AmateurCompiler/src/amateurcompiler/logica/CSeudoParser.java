@@ -11,15 +11,15 @@ import java.util.ArrayList;
  *
  * @author jdpra
  */
-public class CDisqueSyntactico {
+public class CSeudoParser {
     
     private ArrayList<CToken> tokens;
     int auxLinea = 0;
-    public CDisqueSyntactico(){
+    public CSeudoParser(){
         this.tokens = new ArrayList<>();
     } 
     
-    public CDisqueSyntactico(ArrayList<CToken> tokensIn){
+    public CSeudoParser(ArrayList<CToken> tokensIn){
         this.tokens = tokensIn;
     }
     
