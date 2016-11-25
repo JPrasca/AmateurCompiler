@@ -74,7 +74,7 @@ public class CCadenas {
     public static final String VALOR_ENTERO = "([-]?([0-9])+)|\\(([-]?([0-9])+)\\)";
     public static final String VALOR_REAL = "(" + VALOR_ENTERO + ")+[.](([0-9])+)|\\((" + VALOR_ENTERO + ")+[.](([0-9])+)\\)";
     //VALOR_BOOLEANO = [verdadero]|[falso]
-    public static final String VALOR_CADENA = "([\"](([A-Za-z0-9 ])([\\w])*)*[\"])";
+    public static final String VALOR_CADENA = "[\\\"]([A-Za-z0-9]|[ ]|[\\\\//$%&()#*,;.:-_?¿])*[\\\"]";
 
     public static final String VALOR_ESPACIO = "[ \t]+";
     public static final String VALOR_FIN_LINEA = "([\n]|[\r]|[\r\n])";
@@ -92,8 +92,8 @@ public class CCadenas {
     public static final String EXPRESION_INICIO = "((" + VALOR_ESPACIO + ")*" + PR_INICIO + "(" + VALOR_ESPACIO + ")*)";
     public static final String EXPRESION_FIN = "((" + VALOR_ESPACIO + ")*" + PR_FIN + "(" + VALOR_ESPACIO + ")*)";
 
-    public static final String EXPRESION_DECLARACION = ("((" + PR_BOOLEANO + "|" + PR_CADENA + "|" + PR_ENTERO + "|" + PR_REAL + ")" + VALOR_ESPACIO + ID_VAR
-             + "(" + VALOR_ESPACIO + ")*)");
+    public static final String EXPRESION_DECLARACION = ("(" + VALOR_ESPACIO + ")*" + "((" + PR_BOOLEANO + "|" + PR_CADENA + "|" + PR_ENTERO + "|" + PR_REAL + ")" + VALOR_ESPACIO + ID_VAR
+             + "(" + VALOR_ESPACIO + ")*)" + "((" + VALOR_ESPACIO + ")*" + O_COMA + "(" + VALOR_ESPACIO + ")*" + ID_VAR + ")*" + "(" + VALOR_ESPACIO + ")*");
 
     public static final String EXPRESION_ALGEBRAICA_SIMPLE = ("((([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO
             + "|" + VALOR_CADENA + ")(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO + "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO

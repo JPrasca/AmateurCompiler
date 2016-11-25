@@ -146,7 +146,7 @@ public class CConvertidor {
                     codigoCPP+="%";
                     break;
                 case "O_ASIGNACION":
-                    codigoCPP+="";
+                    codigoCPP+="=";
                     break;
                 case "O_DOS_PUNTOS":
                     codigoCPP+=":";

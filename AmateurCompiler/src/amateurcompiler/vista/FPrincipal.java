@@ -70,6 +70,7 @@ public class FPrincipal extends javax.swing.JFrame {
         }
 
         initComponents();
+        jTextAreaLog.setForeground(Color.red);
 //        jTextAreaCodigoIn.addCaretListener(new CaretListener() {
 //            @Override
 //            public void caretUpdate(CaretEvent e) {
@@ -178,6 +179,7 @@ public class FPrincipal extends javax.swing.JFrame {
 
         jTextAreaLog.setColumns(20);
         jTextAreaLog.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
+        jTextAreaLog.setForeground(new java.awt.Color(255, 0, 0));
         jTextAreaLog.setRows(5);
         jTextAreaLog.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaLog);

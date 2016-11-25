@@ -115,7 +115,7 @@ ID_VAR = (([A-Za-z])([\w])*)([0-9])*
 VALOR_ENTERO = [-]?([0-9])+
 VALOR_REAL = [-]?({VALOR_ENTERO})+[.]({VALOR_ENTERO})+
 //VALOR_BOOLEANO = [verdadero]|[falso]
-VALOR_CADENA = [\"](([A-Za-z0-9])([\w])*|[\W])*[\"]
+VALOR_CADENA = [\"]([A-Za-z0-9]|[ ]|[\\//$%&()#*,;.:-_?¿])*[\"]
 
 VALOR_ESPACIO = [ \t]
 VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
