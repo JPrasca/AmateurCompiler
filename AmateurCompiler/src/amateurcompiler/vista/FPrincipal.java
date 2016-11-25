@@ -70,7 +70,7 @@ public class FPrincipal extends javax.swing.JFrame {
         }
 
         initComponents();
-        jTextAreaLog.setForeground(Color.red);
+        
 //        jTextAreaCodigoIn.addCaretListener(new CaretListener() {
 //            @Override
 //            public void caretUpdate(CaretEvent e) {
