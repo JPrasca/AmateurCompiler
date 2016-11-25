@@ -7,7 +7,6 @@ package amateurcompiler;
 
 import amateurcompiler.vista.FPrincipal;
 
-
 /**
  *
  * @author jdpra
@@ -21,19 +20,18 @@ public class CCliente {
     
     public static void main(String[] args) {
         // TODO code application logic here
-           
+
 //        System.out.println("cad  =  \"valor\"".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
 //        System.out.println("c = valor".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
-//        System.out.println("cad = 1".matches(amateurcompiler.logica.fuentes.CCadenas.ASIGNACION));
-        System.out.println("entero vad,a , s2".matches(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION));
-        System.out.println(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION);
+        System.out.println("entero i".matches(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION));
+        System.out.println("para i = 1 hasta 10 paso 1 abre\n".matches(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_ABRE_PARA));
+        //System.out.println(amateurcompiler.logica.fuentes.CCadenas.EXPRESION_DECLARACION);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FPrincipal().setVisible(true);
             }
         });
-        
+
     }
-    
-    
+
 }

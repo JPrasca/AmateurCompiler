@@ -15,7 +15,7 @@ import java.util.ArrayList;
 %public //Cambiamos el nombre de la clase del analizador
 
 
-%class CScaneador //Agregamos soporte a unicode
+%class CScanner //Agregamos soporte a unicode
 
 %unicode
 //Codigo java
@@ -59,6 +59,7 @@ import java.util.ArrayList;
 //Expresiones regulares
 //Declaraciones
 
+
 PR_PROGRAMA = "programa"
 PR_VARIABLE = "variable"
 PR_ENTERO = "entero"
@@ -67,22 +68,25 @@ PR_CADENA = "cadena"
 PR_BOOLEANO = "booleano"
 PR_INICIO = "inicio"
 PR_FIN = "fin"
+PR_ABRE = "abre"
+PR_CIERRA = "cierra"
 PR_LEER = "leer"
 PR_ESCRIBIR = "escribir"
 PR_SI = "si"
 PR_SINO = "sino"
-PR_FIN_SI = "finsi"
+//PR_FIN_SI = "finsi"
 PR_SEGUN = "segun"
 PR_DE_OTRO_MODO = "deotromodo"
-PR_FIN_SEGUN = "finsegun"
+//PR_FIN_SEGUN = "finsegun"
 PR_MIENTRAS = "mientras"
-PR_FIN_MIENTRAS = "finmientras"
+//PR_FIN_MIENTRAS = "finmientras"
 PR_HACER = "hacer"
 PR_MIENTRAS_QUE = "mientrasque"
 PR_PARA = "para"
 PR_HASTA = "hasta"
 PR_PASO = "paso"
-PR_FIN_PARA = "finpara"
+PR_FUNCION = "subrutina"
+//PR_FIN_PARA = "finpara"
 
 OR_MAYOR_QUE = ">"
 OR_MENOR_QUE = "<"
@@ -104,9 +108,10 @@ O_PAREN_CIERRA = ")"
 O_CORCHETE_ABRE = "["
 O_CORCHETE_CIERRA = "]"
 O_COMA = ","
+COMENTARIOS = [\#](([A-Za-z0-9])([\w])*|[\W])*[\#]
 
 VALOR_BOOLEANO = ("verdadero"|"falso")
-ID_VAR = ([A-Za-z0-9])([\w])*
+ID_VAR = (([A-Za-z])([\w])*)([0-9])*
 VALOR_ENTERO = [-]?([0-9])+
 VALOR_REAL = [-]?({VALOR_ENTERO})+[.]({VALOR_ENTERO})+
 //VALOR_BOOLEANO = [verdadero]|[falso]
@@ -178,6 +183,20 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+{PR_ABRE} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"PR_ABRE",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
+{PR_CIERRA} {
+	contador++;
+    CToken t = new CToken(contador,yytext(),"PR_CIERRA",yyline,yycolumn);
+    tokens.add(t);
+    return t;
+}
+
 {PR_LEER} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"PR_LEER",yyline,yycolumn);
@@ -206,12 +225,13 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+/*
 {PR_FIN_SI} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"PR_FIN_SI",yyline,yycolumn);
     tokens.add(t);
     return t;
-}
+}*/
 
 {PR_SEGUN} {
 	contador++;
@@ -227,12 +247,13 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+/*
 {PR_FIN_SEGUN} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"PR_FIN_SEGUN",yyline,yycolumn);
     tokens.add(t);
     return t;
-}
+}*/
 
 {PR_MIENTRAS} {
 	contador++;
@@ -241,12 +262,13 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+/*
 {PR_FIN_MIENTRAS} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"PR_FIN_MIENTRAS",yyline,yycolumn);
     tokens.add(t);
     return t;
-}
+}*/
 
 {PR_HACER} {
 	contador++;
@@ -283,12 +305,14 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     return t;
 }
 
+/*
 {PR_FIN_PARA} {
 	contador++;
     CToken t = new CToken(contador,yytext(),"PR_FIN_PARA",yyline,yycolumn);
     tokens.add(t);
     return t;
 }
+*/
 
 {OR_MAYOR_QUE} {
 	contador++;
@@ -477,4 +501,11 @@ VALOR_FIN_LINEA = ([\n]|[\r]|[\r\n])
     CToken t = new CToken(contador,yytext(),"VALOR_FIN_LINEA",yyline,yycolumn);
     tokens.add(t);
     return t;
+}
+
+{COMENTARIOS} {
+	contador++;
+	CToken t = new CToken(contador, yytext(), "COMENTARIOS", yyline, yycolumn);
+	tokens.add(t);
+	return t;
 }
