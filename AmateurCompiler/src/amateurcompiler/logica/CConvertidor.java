@@ -37,7 +37,7 @@ public class CConvertidor {
                     codigoCPP += (
                         "#include<conio.h>\n" +
                         "#include<iostream>\n" +
-                        "#include<string.h\n\n>" +
+                        "#include<string.h>\n\n" +
                         "using namespace std;\n\n"
                     );
                     break;
@@ -68,16 +68,117 @@ public class CConvertidor {
                     codigoCPP += "cout<<";
                     break;
                 case "PR_ABRE":
-                    codigoCPP += "\\){";
+                    codigoCPP += "){";
                     break;
                 case "PR_CIERRA":
                     codigoCPP += "}";
                     break;
                 case "PR_SI":
-                    codigoCPP+= "if\\(";
+                    codigoCPP+= "if(";
                     break;
-                case "":
+                case "PR_SINO":
+                    codigoCPP+= "}else{";
                     break;
+                case "PR_SEGUN":
+                    codigoCPP+="switch(";
+                    break;
+                case "PR_DE_OTRO_MODO":
+                    codigoCPP+="default";
+                    break;
+                case "PR_MIENTRAS":
+                    codigoCPP+="while(";
+                    break;
+                case "PR_HACER":
+                    codigoCPP+="(do";
+                    break;
+                case "PR_MIENTRAS_QUE":
+                    codigoCPP+="while(";
+                    break;
+                case "PR_PARA":
+                    codigoCPP+="for(";
+                    break;
+                case "PR_HASTA":
+                    codigoCPP+="";
+                    break;
+                case "PR_PASO":
+                    codigoCPP+="";
+                    break;
+                case "OR_MAYOR_QUE":
+                    codigoCPP+=">";
+                    break;
+                case "OR_MENOR_QUE":
+                    codigoCPP+="<";
+                    break;
+                case "OR_IGUAL_QUE":
+                    codigoCPP+="==";
+                    break;
+                case "OR_MENOR_O_IGUAL_QUE":
+                    codigoCPP+="<=";
+                    break;
+                case "OR_MAYOR_O_IGUAL_QUE":
+                    codigoCPP+=">=";
+                    break;
+                case "OR_DIFERENTE_DE":
+                    codigoCPP+="!=";
+                    break;
+                case "OL_Y":
+                    codigoCPP+="&&";
+                    break;
+                case "OL_O":
+                    codigoCPP+="||";
+                    break;
+                case "OL_NO":
+                    codigoCPP+="!";
+                    break;
+                case "OA_SUMA":
+                    codigoCPP+="+";
+                    break;
+                case "OA_RESTA":
+                    codigoCPP+="-";
+                    break;
+                case "OA_PRODUCTO":
+                    codigoCPP+="*";
+                    break;
+                case "OA_DIVISION":
+                    codigoCPP+="/";
+                    break;
+                case "OA_MODULO":
+                    codigoCPP+="%";
+                    break;
+                case "O_ASIGNACION":
+                    codigoCPP+="";
+                    break;
+                case "O_DOS_PUNTOS":
+                    codigoCPP+=":";
+                    break;
+                case "O_PAREN_ABRE":
+                    codigoCPP+="(";
+                    break;
+                case "O_PAREN_CIERRA":
+                    codigoCPP+=")";
+                    break;
+                case "O_CORCHETE_ABRE":
+                    codigoCPP+="[";
+                    break;
+                case "O_CORCHETE_CIERRA":
+                    codigoCPP+="]";
+                    break;
+                case "ID_VAR":
+                    codigoCPP+=token.getToken();
+                    break;
+                case "VALOR_ENTERO":
+                    codigoCPP+=token.getToken();
+                    break;
+                case "VALOR_REAL":
+                    codigoCPP+=token.getToken();
+                    break;
+                case "VALOR_CADENA":
+                    codigoCPP+=token.getToken();
+                    break;
+                case "EXPRESION_COMENTARIOS":
+                    codigoCPP+="/*"+ token.getToken() + "*/";
+                    break;
+                    
             }
         }
         

@@ -39,6 +39,7 @@ public class FVistaCpp extends javax.swing.JFrame {
     /**
      * Creates new form FPrincipal
      */
+    
     public FVistaCpp() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -47,6 +48,36 @@ public class FVistaCpp extends javax.swing.JFrame {
         }
         
         initComponents();
+        
+        
+        
+        jTextAreaCodigoCpp.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                int pos = e.getDot();
+                try {
+                    int row = jTextAreaCodigoCpp.getLineOfOffset(pos) + 1;
+                    int col = pos - jTextAreaCodigoCpp.getLineStartOffset(row - 1) + 1;
+                    jLabelLineas.setText("Línea: " + row + " Columna: " + col);
+                    
+                } catch (BadLocationException exc) {
+                    System.out.println(exc);
+                }
+            }
+        });
+    }
+    
+    public FVistaCpp(CConvertidor c) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FVistaCpp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        initComponents();
+        
+        jTextAreaCodigoCpp.setText(c.Convertir());
+        
         jTextAreaCodigoCpp.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -81,7 +112,6 @@ public class FVistaCpp extends javax.swing.JFrame {
         jTextAreaLog = new javax.swing.JTextArea();
         jLabelLineas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(960, 600));
         setSize(new java.awt.Dimension(900, 600));
 
@@ -89,7 +119,7 @@ public class FVistaCpp extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(900, 600));
 
         jPanelCondigoCpp.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelCondigoCpp.setBorder(javax.swing.BorderFactory.createTitledBorder("Escriba su código aquí"));
+        jPanelCondigoCpp.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
         jPanelCondigoCpp.setPreferredSize(new java.awt.Dimension(420, 490));
 
         jTextAreaCodigoCpp.setBackground(new java.awt.Color(238, 238, 243));

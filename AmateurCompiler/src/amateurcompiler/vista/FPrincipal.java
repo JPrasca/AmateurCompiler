@@ -60,6 +60,7 @@ public class FPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FPrincipal
      */
+    CSeudoParser p;
     public FPrincipal() {
 
         try {
@@ -228,6 +229,11 @@ public class FPrincipal extends javax.swing.JFrame {
         jMenuOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amateurcompiler/img/Icono.png"))); // NOI18N
         jMenuOpcion.setText("Cpp");
         jMenuOpcion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuOpcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuOpcionMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuOpcion);
 
         setJMenuBar(jMenuBar1);
@@ -266,8 +272,8 @@ public class FPrincipal extends javax.swing.JFrame {
 
             }
 
-           CSeudoParser p = new CSeudoParser(aux);
-           
+            p = new CSeudoParser(aux);
+            
 
             p.verificarSintaxis();
             
@@ -292,6 +298,12 @@ public class FPrincipal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jMenuEjecucionMouseClicked
+
+    private void jMenuOpcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuOpcionMouseClicked
+        // TODO add your handling code here:
+        FVistaCpp f = new FVistaCpp(new CConvertidor(this.p.getTokens()));
+        f.setVisible(true);
+    }//GEN-LAST:event_jMenuOpcionMouseClicked
 
     private void pasoDeTexto() {
 

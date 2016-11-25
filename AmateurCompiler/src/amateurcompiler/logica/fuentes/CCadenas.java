@@ -36,9 +36,9 @@ public class CCadenas {
     //public static final String PR_FIN_MIENTRAS = "finmientras";
     public static final String PR_HACER = "hacer";
     public static final String PR_MIENTRAS_QUE = "mientrasque";
-    public static final String PR_PARA = "(para)";
-    public static final String PR_HASTA = "(hasta)";
-    public static final String PR_PASO = "(paso)";
+    public static final String PR_PARA = "para";
+    public static final String PR_HASTA = "hasta";
+    public static final String PR_PASO = "paso";
     //public static final String PR_FIN_PARA = "finpara";
 
     public static final String OR_MAYOR_QUE = ">";
@@ -92,8 +92,8 @@ public class CCadenas {
     public static final String EXPRESION_INICIO = "((" + VALOR_ESPACIO + ")*" + PR_INICIO + "(" + VALOR_ESPACIO + ")*)";
     public static final String EXPRESION_FIN = "((" + VALOR_ESPACIO + ")*" + PR_FIN + "(" + VALOR_ESPACIO + ")*)";
 
-    public static final String EXPRESION_DECLARACION = ("(" + PR_BOOLEANO + "|" + PR_CADENA + "|" + PR_ENTERO + "|" + PR_REAL + ")" + VALOR_ESPACIO + ID_VAR
-             + "(" + VALOR_ESPACIO + ")*");
+    public static final String EXPRESION_DECLARACION = ("((" + PR_BOOLEANO + "|" + PR_CADENA + "|" + PR_ENTERO + "|" + PR_REAL + ")" + VALOR_ESPACIO + ID_VAR
+             + "(" + VALOR_ESPACIO + ")*)");
 
     public static final String EXPRESION_ALGEBRAICA_SIMPLE = ("((([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO
             + "|" + VALOR_CADENA + ")(" + VALOR_ESPACIO + OA_TODOS + VALOR_ESPACIO + "([-]?" + ID_VAR + "|" + VALOR_REAL + "|" + VALOR_ENTERO
